@@ -1,0 +1,113 @@
+DAA 3:
+
+## Theory
+
+Huffman Encoding is a lossless data compression technique that uses a Greedy Algorithm to assign variable-length binary codes to characters based on their frequencies.
+
+Characters with higher frequencies get shorter codes, while characters with lower frequencies get longer codes. It uses a priority queue (min-heap) to repeatedly combine the two nodes with the lowest frequencies until a single Huffman tree is formed.
+
+## C++ Program
+
+```cpp
+#include <iostream>
+#include <queue>
+using namespace std;
+
+struct Node {
+    char ch;
+    int freq;
+    Node *left, *right;
+
+    Node(char c, int f) {
+        ch = c;
+        freq = f;
+        left = right = NULL;
+    }
+};
+
+struct Compare {
+    bool operator()(Node* a, Node* b) {
+        return a->freq > b->freq;
+    }
+};
+
+void printCodes(Node* root, string code) {
+    if (root == NULL)
+        return;
+
+    if (root->left == NULL && root->right == NULL) {
+        cout << root->ch << " : " << code << endl;
+        return;
+    }
+
+    printCodes(root->left, code + "0");
+    printCodes(root->right, code + "1");
+}
+
+int main() {
+    int n;
+    cout << "Enter number of characters: ";
+    cin >> n;
+
+    priority_queue<Node*, vector<Node*>, Compare> pq;
+
+    cout << "Enter character and frequency:\n";
+
+    for (int i = 0; i < n; i++) {
+        char ch;
+        int freq;
+        cin >> ch >> freq;
+        pq.push(new Node(ch, freq));
+    }
+
+    while (pq.size() > 1) {
+        Node* left = pq.top();
+        pq.pop();
+
+        Node* right = pq.top();
+        pq.pop();
+
+        Node* parent = new Node('$', left->freq + right->freq);
+        parent->left = left;
+        parent->right = right;
+
+        pq.push(parent);
+    }
+
+    cout << "\nHuffman Codes:\n";
+    printCodes(pq.top(), "");
+
+    return 0;
+}
+```
+
+## Sample Input
+
+```text
+Enter number of characters: 5
+A 5
+B 9
+C 12
+D 13
+E 16
+```
+
+## Output
+
+```text
+Huffman Codes:
+D : 00
+C : 01
+B : 100
+A : 101
+E : 11
+```
+
+Note: Huffman codes may differ depending on how equal frequencies are handled, but the total encoding cost remains optimal.
+
+## Complexity Analysis
+
+- **Time Complexity:** O(n log n), because the priority queue performs insertion and deletion operations for n characters.
+- **Space Complexity:** O(n), for storing the Huffman tree and priority queue.
+
+**Greedy Strategy:** Repeatedly select the two characters or nodes with the minimum frequencies and combine them to create a new node until only one tree remains.

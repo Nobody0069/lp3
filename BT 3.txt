@@ -1,0 +1,39 @@
+BT 3:
+
+
+ // SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract BankAccount {
+
+    uint256 private balance;
+
+    // Deposit money
+    function deposit() public payable {
+        require(msg.value > 0, "Enter amount greater than zero");
+        balance += msg.value;
+    }
+
+    // Withdraw money
+    function withdraw(uint256 amount) public {
+        require(amount > 0, "Enter valid amount");
+        require(amount <= balance, "Insufficient balance");
+
+        balance -= amount;
+        (bool success, ) = payable(msg.sender).call{value: amount}("");
+require(success, "Transfer failed");
+    }
+
+    // Show account balance
+    function showBalance() public view returns (uint256) {
+        return balance;
+    }
+}
+
+STEPS:=
+1.COMPILE GREEN TICK CONFIRM
+2.DEPLOY KEEP VALUE 0 AS IT IS
+3.DEPLOY CONTRACT KEPP VALUE SCROLL DOWN KEEP TOTAL AMOUNT OF BALANCE
+4.DEPOSITE IT WILL TOTAL AMOUNT OF BALANCE
+5.WITHDRAW AMOUNT KEEP AMOUNT 1ETH=10x10^18 ZERO TO BE WITHDRAW AMOUNT
+6.CHECK BALANCE DEPOSITE-WITHDRAW AMOUNT SHOULD BE SHOWN...

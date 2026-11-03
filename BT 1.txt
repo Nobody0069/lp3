@@ -1,0 +1,121 @@
+BT 1:
+
+METAMASK SITE:https://metamask.com/
+Google Cloud Sepolia Faucet:https://cloud.google.com/application/web3/faucet/ethereum/sepolia
+
+
+# Practical: Install MetaMask and Study Spending Ether per Transaction
+
+## Websites Required
+
+1. MetaMask Installation: https://metamask.io/
+2. Google Cloud Sepolia Faucet: https://cloud.google.com/application/web3/faucet/ethereum/sepolia
+3. Sepolia Etherscan: https://sepolia.etherscan.io/
+
+## Step-by-Step Procedure
+
+### Step 1: Install MetaMask
+1. Open Google Chrome.
+2. Visit https://metamask.io/
+3. Click on Download.
+4. Select Chrome and click Install MetaMask.
+5. Add the extension to Chrome.
+6. Open MetaMask.
+
+### Step 2: Create a Wallet
+1. Select Create a new wallet.
+2. Set a strong password.
+3. Securely back up the Secret Recovery Phrase.
+4. Complete the wallet setup.
+5. Open your wallet.
+
+### Step 3: Enable Sepolia Test Network
+1. Open MetaMask.
+2. Click the three-line menu.
+3. Select Networks.
+4. Enable Show test networks.
+5. Select Sepolia from the network list.
+
+### Step 4: Get Free Test Ether
+1. Open the Google Cloud Sepolia Faucet.
+2. Sign in with your Google account if required.
+3. Copy your MetaMask wallet address.
+4. Paste the address into the faucet.
+5. Select Ethereum Sepolia.
+6. Click Get 0.05 Sepolia ETH.
+7. Wait for the transaction to complete.
+8. Return to MetaMask and check your balance.
+
+### Step 5: Create a Second Account
+1. Open the account selector in MetaMask.
+2. Select Add account or hardware wallet.
+3. Click Add a new account.
+4. Create Account 2.
+5. Copy the wallet address of Account 2.
+
+### Step 6: Send Ether
+1. Switch to Account 1.
+2. Confirm that Sepolia is selected.
+3. Click Send.
+4. Paste the Account 2 wallet address.
+5. Enter the amount, for example, 0.001 ETH.
+6. Click Continue.
+7. Observe the estimated gas fee.
+8. Check the total amount, including the fee.
+9. Click Confirm to send the transaction.
+
+### Step 7: Verify the Transaction
+1. Open the Activity section in MetaMask.
+2. Select the latest transaction.
+3. Check the transaction status.
+4. Click View on block explorer.
+5. Sepolia Etherscan will open.
+6. Observe the transaction details:
+   - Transaction status
+   - Amount transferred
+   - Gas used
+   - Gas price
+   - Transaction fee
+
+## Transaction Fee Calculation
+
+The Ethereum transaction fee is calculated using:
+
+Transaction Fee = Gas Used × Gas Price
+
+1 Gwei = 0.000000001 ETH
+
+For example, consider the following transaction:
+
+- Gas Used = 204,600
+- Gas Price = 1.500000014 Gwei
+
+Transaction Fee = 204,600 × 1.500000014 × 0.000000001
+
+Transaction Fee = 0.0003069000028644 ETH
+
+Total Ether Spent = Amount Transferred + Transaction Fee
+
+Total Ether Spent = 0.001 + 0.0003069000028644
+
+Total Ether Spent = 0.0013069000028644 ETH
+
+## Observation Table
+
+| Parameter | Observation |
+|---|---|
+| Wallet | MetaMask |
+| Network | Sepolia |
+| Sender | Account 1 |
+| Receiver | Account 2 |
+| Amount transferred | 0.001 ETH |
+| Gas used | 204,600 |
+| Gas price | 1.500000014 Gwei |
+| Transaction fee | 0.0003069000028644 ETH |
+| Transaction status | Successful |
+
+## Result
+
+MetaMask was successfully installed and configured using the Ethereum Sepolia test network. A test transaction was performed from Account 1 to Account 2. The transaction was verified using Sepolia Etherscan, and the gas used, gas price, and transaction fee were studied successfully.
+
+**Note:** Use only Sepolia test ETH for this practical. Test ETH has no real monetary value. Never share your Secret Recovery Phrase or private key.

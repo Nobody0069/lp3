@@ -1,0 +1,94 @@
+DAA 1:
+## Theory
+
+The Fibonacci series is a sequence in which each number is the sum of the previous two numbers. It starts with 0 and 1.
+
+Example: 0, 1, 1, 2, 3, 5, 8, 13...
+
+**Recursive Method:** A function calls itself to calculate Fibonacci numbers. It uses base conditions F(0) = 0 and F(1) = 1.
+
+**Non-Recursive Method:** Uses a loop and three variables to calculate Fibonacci numbers without recursive function calls.
+
+## 1. Recursive Program (C++)
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int fib(int n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+
+    return fib(n - 1) + fib(n - 2);
+}
+
+int main() {
+    int n;
+    cout << "Enter number of terms: ";
+    cin >> n;
+
+    if (n <= 0) {
+        cout << "Invalid input";
+        return 0;
+    }
+
+    cout << "Fibonacci Series: ";
+    for (int i = 0; i < n; i++) {
+        cout << fib(i) << " ";
+    }
+
+    return 0;
+}
+```
+
+## 2. Non-Recursive Program (C++)
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n, a = 0, b = 1, c;
+
+    cout << "Enter number of terms: ";
+    cin >> n;
+
+    if (n <= 0) {
+        cout << "Invalid input";
+        return 0;
+    }
+
+    cout << "Fibonacci Series: ";
+
+    for (int i = 0; i < n; i++) {
+        cout << a << " ";
+        c = a + b;
+        a = b;
+        b = c;
+    }
+
+    return 0;
+}
+```
+
+## Sample Output
+
+Input:
+```text
+Enter number of terms: 7
+```
+
+Output:
+```text
+Fibonacci Series: 0 1 1 2 3 5 8
+```
+
+## Complexity Analysis
+
+| Method | Time Complexity | Space Complexity |
+|---|---|---|
+| Recursive | O(2^n) | O(n) |
+| Non-Recursive | O(n) | O(1) |
+
+- **Recursive:** Takes more time due to repeated calculations and uses stack memory for function calls.
+- **Non-Recursive:** Uses a loop, avoids repeated calculations and requires constant extra memory.

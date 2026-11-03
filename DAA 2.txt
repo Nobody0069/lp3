@@ -1,0 +1,97 @@
+DAA 2:
+
+## Theory
+
+Job Sequencing with Deadlines is a Greedy Algorithm in which each job has a deadline and a profit. The objective is to schedule jobs to maximize the total profit while completing each job before its deadline.
+
+The greedy method selects jobs in decreasing order of profit and assigns each job to the latest available time slot before its deadline.
+
+## C++ Program
+
+```cpp
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+struct Job {
+    int id, deadline, profit;
+};
+
+bool compare(Job a, Job b) {
+    return a.profit > b.profit;
+}
+
+int main() {
+    int n;
+    cout << "Enter number of jobs: ";
+    cin >> n;
+
+    Job jobs[n];
+
+    for (int i = 0; i < n; i++) {
+        jobs[i].id = i + 1;
+        cout << "Enter deadline and profit for job "
+             << i + 1 << ": ";
+        cin >> jobs[i].deadline >> jobs[i].profit;
+    }
+
+    sort(jobs, jobs + n, compare);
+
+    int maxDeadline = 0;
+    for (int i = 0; i < n; i++) {
+        maxDeadline = max(maxDeadline, jobs[i].deadline);
+    }
+
+    int slot[maxDeadline + 1] = {0};
+    int totalProfit = 0, count = 0;
+
+    for (int i = 0; i < n; i++) {
+        for (int j = jobs[i].deadline; j >= 1; j--) {
+            if (slot[j] == 0) {
+                slot[j] = jobs[i].id;
+                totalProfit += jobs[i].profit;
+                count++;
+                break;
+            }
+        }
+    }
+
+    cout << "\nSelected Jobs: ";
+    for (int i = 1; i <= maxDeadline; i++) {
+        if (slot[i] != 0)
+            cout << "J" << slot[i] << " ";
+    }
+
+    cout << "\nTotal Jobs: " << count;
+    cout << "\nMaximum Profit: " << totalProfit;
+
+    return 0;
+}
+```
+
+## Sample Input
+
+```text
+Enter number of jobs: 5
+Enter deadline and profit for job 1: 2 100
+Enter deadline and profit for job 2: 1 19
+Enter deadline and profit for job 3: 2 27
+Enter deadline and profit for job 4: 1 25
+Enter deadline and profit for job 5: 3 15
+```
+
+## Output
+
+```text
+Selected Jobs: J3 J1 J5
+Total Jobs: 3
+Maximum Profit: 142
+```
+
+## Complexity Analysis
+
+- **Time Complexity:** O(n log n + n × d), where n is the number of jobs and d is the maximum deadline. Sorting takes O(n log n), and slot allocation takes O(n × d).
+- **Space Complexity:** O(d), for storing available time slots, excluding the input array.
+
+**Greedy Strategy:** Select the job with the highest profit first and place it in the latest available slot before its deadline.
+

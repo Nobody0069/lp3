@@ -1,0 +1,83 @@
+DAA 5:
+
+## Theory
+
+The 0-1 Knapsack Problem is an optimization problem in which each item has a weight and a profit. The objective is to maximize the total profit without exceeding the given knapsack capacity.
+
+In this problem, each item can either be selected completely (1) or rejected (0). Fractions of items are not allowed.
+
+Dynamic Programming is used to solve this problem by breaking it into smaller subproblems and storing their results to avoid repeated calculations.
+
+**Formula:**
+
+DP[i][w] = max(DP[i-1][w], profit[i] + DP[i-1][w-weight[i]])
+
+## C++ Program (Dynamic Programming)
+
+```cpp
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n, capacity;
+
+    cout << "Enter number of items: ";
+    cin >> n;
+
+    int weight[n], profit[n];
+
+    for (int i = 0; i < n; i++) {
+        cout << "Enter weight and profit of item "
+             << i + 1 << ": ";
+        cin >> weight[i] >> profit[i];
+    }
+
+    cout << "Enter knapsack capacity: ";
+    cin >> capacity;
+
+    int dp[n + 1][capacity + 1] = {};
+
+    for (int i = 1; i <= n; i++) {
+        for (int w = 0; w <= capacity; w++) {
+
+            if (weight[i - 1] <= w) {
+                dp[i][w] = max(
+                    dp[i - 1][w],
+                    profit[i - 1] + dp[i - 1][w - weight[i - 1]]
+                );
+            }
+            else {
+                dp[i][w] = dp[i - 1][w];
+            }
+        }
+    }
+
+    cout << "\nMaximum Profit: " << dp[n][capacity];
+
+    return 0;
+}
+```
+
+## Sample Input
+
+```text
+Enter number of items: 3
+Enter weight and profit of item 1: 10 60
+Enter weight and profit of item 2: 20 100
+Enter weight and profit of item 3: 30 120
+Enter knapsack capacity: 50
+```
+
+## Output
+
+```text
+Maximum Profit: 220
+```
+
+## Complexity Analysis
+
+- **Time Complexity:** O(n × W), where n is the number of items and W is the knapsack capacity.
+- **Space Complexity:** O(n × W), for storing the dynamic programming table.
+
+**Strategy:** For every item, decide whether to include it or exclude it. Select the option that gives maximum profit without exceeding the knapsack capacity.
